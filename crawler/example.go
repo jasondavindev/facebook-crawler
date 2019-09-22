@@ -5,16 +5,16 @@ import (
 	"os"
 )
 
-// CheckURL search for pending comments example
+// CheckURL search for unanswered comments example
 func CheckURL() {
-	url := "https://www.facebook.com/plugins/feedback.php?info=put_your_iframe_url_here"
+	url := "https://www.facebook.com/plugins/feedback.php?info=put_your_iframe_url_here?href=http://dynamicurl.com/"
 	user := "YOUR_OFFICIAL_USER_ID"
-	hasPendingComments, err := VerifyFacebookPage(url, user)
+	hasUnansweredComments, err := VerifyFacebookPage(url, user)
 
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
 
-	fmt.Println(hasPendingComments)
+	fmt.Println(hasUnansweredComments)
 }

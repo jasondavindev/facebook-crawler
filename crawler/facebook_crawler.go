@@ -59,7 +59,7 @@ func parseJSONComments(jsonString string, dest *FacebookComments) error {
 	return json.Unmarshal([]byte(comments), dest)
 }
 
-func hasPendingComments(comments FacebookComments, officialUser string) bool {
+func hasUnansweredComments(comments FacebookComments, officialUser string) bool {
 	if len(comments.CommentIds) == 0 {
 		return false
 	}
@@ -85,7 +85,7 @@ func hasPendingComments(comments FacebookComments, officialUser string) bool {
 	return false
 }
 
-// VerifyFacebookPage Fetch for url and check for pending comments
+// VerifyFacebookPage Fetch for url and check for unanswered comments
 func VerifyFacebookPage(url string, officialUser string) (bool, error) {
 	body, err := fetch(url)
 
@@ -100,5 +100,5 @@ func VerifyFacebookPage(url string, officialUser string) (bool, error) {
 		return false, err
 	}
 
-	return hasPendingComments(obj, officialUser), nil
+	return hasUnansweredComments(obj, officialUser), nil
 }
